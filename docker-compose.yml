@@ -1,0 +1,28 @@
+version: '3.3'
+services:
+  gnache:
+    container_name: coupon_dapp_gnache
+    build: docker/gnache
+    working_dir: /app
+    command: ./startup.sh
+    ports:
+    - "8545:8545"
+    volumes:
+      - './docker/gnache/startup.sh:/app/startup.sh'
+      - './docker/gnache/truffle-config.js:/app/truffle-config-frontend.js'
+      - './docker/gnache/truffle-init.js:/app/truffle-init.js'
+      - './src/contract/dev:/app/contracts'
+  react:
+    container_name: coupon_dapp_react
+    tty: true
+    build: .
+    ports:
+    - "3000:3000"
+    volumes:
+      - '/app/node_modules'
+      - '.:/app'
+  ipfs:
+    container_name: coupon_dapp_ipfs
+    build: docker/ipfs
+    ports:
+    - "5002:5002"

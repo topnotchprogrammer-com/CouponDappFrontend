@@ -1,0 +1,14 @@
+version: 2.1
+
+orbs:
+  heroku: circleci/heroku@1.1.1
+
+workflows:
+  heroku_deploy:
+    jobs:
+      - heroku/deploy-via-git:
+          context: heroku
+          filters:
+            branches:
+              only:
+                - master

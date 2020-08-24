@@ -1,0 +1,14 @@
+.menu-bottom {
+    a {
+        position: relative;
+        &:after {
+            content: '-';
+            position: absolute;
+            top: -2px;
+            right: -10px;
+        }
+        &:last-child:after {
+            content: '';
+        }
+    }
+}
